@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tunde Lawal and Co.</title>
+         <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --white: #ffffff;
+      --off-white: #f8f8f6;
+      --light-grey: #efefed;
+      --mid-grey: #c2c2be;
+      --dark-grey: #3a3a38;
+      --charcoal: #1c1c1a;
+      --accent: #b8960c;
+      --accent-light: #f5edcf;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', sans-serif;
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+ 
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 72px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--light-grey);
+    }
+ 
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+ 
+    .nav-logo span { color: var(--accent); }
+ 
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+ 
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark-grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+ 
+    .nav-links a:hover { color: var(--accent); }
+ 
+    .nav-cta {
+      background: var(--charcoal);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 2px;
+      transition: background 0.2s !important;
+    }
+ 
+    .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+      /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+ 
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 7% 6% 7% 8%;
+    }
+ 
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+ 
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 4.5vw, 5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--charcoal);
+      margin-bottom: 1.75rem;
+    }
+ 
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+ 
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--dark-grey);
+      max-width: 440px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+ 
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+ 
+    .btn-primary {
+      background: var(--charcoal);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 2px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+ 
+    .btn-primary:hover { background: var(--accent); }
+ 
+    .btn-outline {
+      background: transparent;
+      color: var(--charcoal);
+      padding: 0.85rem 2rem;
+      border: 1.5px solid var(--charcoal);
+      border-radius: 2px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+ 
+    .btn-outline:hover { background: var(--charcoal); color: var(--white); }
+
+     /* ── SECTION BASE ── */
+    section { padding: 6rem 8%; }
+ 
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+ 
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 600;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+ 
+    .section-sub {
+      font-size: 1rem;
+      color: var(--dark-grey);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--off-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+ 
+    .about-image-block {
+      position: relative;
+    }
+ 
+    .about-image-mock {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--charcoal);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .about-image-mock::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #2e2e2c, #1c1c1a);
+    }
+ 
+    .about-monogram {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-display);
+      font-size: 7rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.07);
+      letter-spacing: -0.02em;
+      user-select: none;
+    }
+ 
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--accent);
+      color: var(--white);
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      box-shadow: 0 4px 20px rgba(184,150,12,0.3);
+    }
+ 
+    .about-badge strong {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      display: block;
+    }
+ 
+    .about-founder {
+
+     }
+ 
+    .about-body {
+      font-size: 1rem;
+      color: var(--dark-grey);
+      line-height: 1.9;
+      margin-bottom: 1.25rem;
+    }
+ 
+
+    /* ── PRACTICE AREAS ── */
+    #practice {
+      background: var(--white);
+    }
+ 
+    .practice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+ 
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--light-grey);
+      border: 1.5px solid var(--light-grey);
+    }
+ 
+    .practice-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      transition: background 0.25s;
+      cursor: default;
+    }
+ 
+    .practice-card:hover {
+      background: var(--charcoal);
+    }
+ 
+    .practice-card:hover .practice-icon { color: var(--accent); }
+    .practice-card:hover .practice-name { color: var(--white); }
+    .practice-card:hover .practice-desc { color: rgba(255,255,255,0.55); }
+ 
+    .practice-icon {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      transition: color 0.25s;
+    }
+ 
+    .practice-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.6rem;
+      transition: color 0.25s;
+    }
+ 
+    .practice-desc {
+      font-size: 0.85rem;
+      color: var(--dark-grey);
+      line-height: 1.75;
+      transition: color 0.25s;
+    }
+ 
+     /* ── CONTACT ── */
+    #contact {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+ 
+    #contact .section-title { color: var(--white); }
+    #contact .section-sub { color: rgba(255,255,255,0.55); }
+ 
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-top: 3.5rem;
+    }
+ 
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+ 
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+ 
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+ 
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+ 
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2px;
+      padding: 0.85rem 1rem;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+ 
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+ 
+    .form-group select option { background: var(--charcoal); }
+ 
+    .form-group textarea { resize: vertical; min-height: 120px; }
+ 
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+ 
+    .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+ 
+    .contact-item-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      background: rgba(184,150,12,0.15);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+ 
+    .contact-item-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.3rem;
+    }
+ 
+    .contact-item-value {
+      font-size: 0.95rem;
+      color: var(--white);
+      line-height: 1.6;
+    }
+ 
+    .contact-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 0.5rem 0;
+    }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: #111110;
+      padding: 2rem 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+ 
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+    }
+ 
+    .footer-logo span { color: var(--accent); }
+ 
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+ 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #home { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      #about { grid-template-columns: 1fr; }
+      .about-image-block { display: none; }
+      .practice-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+ 
+    @media (max-width: 600px) {
+      nav { padding: 0 4%; }
+      .nav-links { display: none; }
+      section { padding: 4rem 5%; }
+      .practice-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; gap: 1.25rem; }
+    }
+    </style>
+    </head>
+    <body>
+
+        <!--NAV-->
+        <nav>
+            <a href="#home" class="nav-logo">Tunde Lawal <span>&</span> Co.</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#practice">Practice Areas</a></li>
+                <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <!--Hero-->
+        <section id="home">
+            <div class="hero-left">
+                <p class="hero-eyebrow">Tunde Lawal & Co. - Est. 1992</p>
+                <h2 class="hero-title">Delivering<br>Justice with <em>Exactitude.</em></h2>
+                <p class="hero-desc">We are full-service law firm committed to protecting your rights, resolving disputes and securing the outcomes that matter most to you.</p>
+                <div class="hero-actions">
+                  <a href="#contact" class="btn-primary">Book a Consultation</a><br>
+                  <a href="#practice" class="btn-outline">Our Practice Areas</a>
+            </div>
+            </div>
+        </section>
+
+        <!--About-->
+        <section id="about">
+        <div class="about-content">
+            <p class="section-eyebrow">About the firm</p>
+            <h3 class="section-title">A Legacy Built on Trust & Results</h2>
+            <p class="about-body">Our firm has spent over three decades earning the trust of individuals, families, and businesses across Nigeria. We offer practical legal solutions backed by extensive knowledge and experience.</p>
+            <p class="about-body">We don't just take cases - we build strategies, anticipate challenges, protect your interests with relentless dedication and stand firmly in your corner from the first consultation to the final resolution.</p>
+             <p class="about-body">Founded by <span style="font-style: italic;  color: var(--accent);">Barrister Tunde Lawal.</span></p>
+        </div>
+        <div class="about-badge">
+            <p><strong>30+</strong>Years of Legal Excellence</p>
+        </div>
+       
+        </section>
+
+        <!--Practice Areas-->
+        <section id="practice">
+            <div class="practice-header">
+                <div>
+                    <p class="section-eyebrow">What We Do</p>
+                    <h3 class="section-title">Our Practice Areas</h2>
+                    <p class="section-sub" style="max-width: 360px; font-size: 0.9rem;">We deal with a wide range of legal matters, from broadroom disputes to family matters - with the same level of dedication.</p>
+                </div>
+            </div>
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">⚖️</div>
+                    <div class="practice-name">Corporate & Business Law</div>
+                    <p class="practice-desc">Company formation, contracts, shareholder rights, commercial disputes, mergers and aquisitions. We protect your business interests at every stage.</p>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🏡</div>
+                    <div class="practice-name">Property & Real Estate</div>
+                    <p class="practice-desc">Land transactions, tenancy disputes, transfer processes and real estate litigation handled with definiteness.</p>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">👨‍👩‍👦</div>
+                    <div class="practice-name">Family Law</div>
+                    <p class="practice-desc">Marriage, divorce and disolutin, custody, adoption, and inheritance matters approached with clarity and sensitivity.</p>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🛡️</div>
+                    <div class="practice-name">Criminal Defence</div>
+                    <p class="practice-desc">Defence against criminal charges, aiming to protect your rights by evaluating evidence and investigating thoroughly.</p>
+                </div>
+                   <div class="practice-card">
+                    <div class="practice-icon">📋</div>
+                    <div class="practice-name">Civil Litigation & Dispute Resolution</div>
+                    <p class="practice-desc">Resolving civil dispute - breach of contract, bankruptcy, neglience - through negotiation or trial.</p>
+                </div>
+                   <div class="practice-card">
+                    <div class="practice-icon">🌍</div>
+                    <div class="practice-name">Immigration Law</div>
+                    <p class="practice-desc">Visa application, residency, citizenship nd immigration appeals handled efficiently.</p>
+                </div>
+                   <div class="practice-card">
+                    <div class="practice-icon">📜</div>
+                    <div class="practice-name">Employment & Labour</div>
+                    <p class="practice-desc">Employment contracts, workplace disputes, wrongful termination, and redundancy.</p>
+                </div>
+                   <div class="practice-card">
+                    <div class="practice-icon">💡</div>
+                    <div class="practice-name">Intellectual Property</div>
+                    <p class="practice-desc">Copyright protection, trademark registrartion and IP enforcement for creators and businesses.</p>
+                </div>
+                   <div class="practice-card">
+                    <div class="practice-icon">🏛️</div>
+                    <div class="practice-name">Public & Constitutional Law</div>
+                    <p class="practice-desc">Judicial reviews, human rights protection, constitutional challenges, and public interest  litigation at the highest courts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!--Contact-->
+        <section id="contact">
+        <p class="section-eyebrow">Get in Touch</p>
+        <h3 class="section-title">Book a Consultation</h3>
+        <p class="section-sub">Your consultation is confidential. Tell us about your matter and we will be in touch within 24 hours.</p>
+        <div class="contact-grid">
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="e.g. Rodiat"/>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="e.g. Muhammed"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com"/>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+234 800 000 0000"/>
+      </div>
+      <div class="form-group">
+        <label>Practice Area</label>
+        <select>
+          <option value="">Select an area of law</option>
+          <option>Corporate & Business Law</option>
+          <option>Property & Real Estate</option>
+          <option>Family Law</option>
+          <option>Criminal Defense</option>
+          <option>Civil Litigation</option>
+          <option>Employment & Labour</option>
+          <option>Immigration Law</option>
+          <option>Intellectual Property</option>
+          <option>Public & Constitutional Law</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Brief Description of Your Matter</label>
+        <textarea placeholder="Briefly describe your legal issue..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:fit-content">Send Enquiry →</button>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div>
+          <div class="contact-item-label">Office Address</div>
+          <div class="contact-item-value">42 Oyo Road, Opposite Sango Cementry<br/>Ibadan, Nigeria</div>
+        </div>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div>
+          <div class="contact-item-label">Phone</div>
+          <div class="contact-item-value">+234 813 610 4345<br/>+234 806 644 0937</div>
+        </div>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value">info@tundelawalandco.com<br/>consult@tundelawalandco.com</div>
+        </div>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🕐</div>
+        <div>
+          <div class="contact-item-label">Office Hours</div>
+          <div class="contact-item-value">Monday – Friday: 8:00am – 6:00pm<br/>Saturday: 10:00am – 4:00pm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Tunde Lawal <span>&</span> Co.</div>
+  <div class="footer-copy">© 2026 Tunde Lawal & Co. All rights reserved.</div>
+</footer>
+    </body>
+</html> 
